@@ -8,10 +8,10 @@ Download the CSV and add it as a 'data asset' in your project on DSX.
 
 To access the lab you can create a new notebook in DSX from a file or URL.  
 
-From File:  
+##### From File:  
 Download the file and select 'From File' when creating a new notebook in your project.
 
-From URL:
+##### From URL:
 Select 'From URL' when creating a new notebook in your project and paste the following URL into the URL Address field:
 
 https://raw.githubusercontent.com/kurlare/DSforAutomotive/master/DS%2Bfor%2BAutomotive%2BLab%253A%2BClassifying%2BBrake%2BEvents.ipynb
