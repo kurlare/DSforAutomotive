@@ -17,5 +17,5 @@ Select 'From URL' when creating a new notebook in your project and paste the fol
 https://raw.githubusercontent.com/kurlare/DSforAutomotive/master/DS%2Bfor%2BAutomotive%2BLab%253A%2BClassifying%2BBrake%2BEvents.ipynb
 
 #### Shiny App
-To run the Shiny app from RStudio, clone the repo to your machine and set your working directory to the 'Shiny' folder.  Then open up server.R or ui.R in RStudio and click the 'Run App' button in the top right corner of the script window.  See [here](http://rstudio.github.io/shiny/tutorial/#welcome) for more details on how to launch Shiny apps in RStudio.
+To run the Shiny app from RStudio, clone the repo to your machine and set your working directory to the 'Shiny' folder.  Then open up server.R or ui.R in RStudio and click the 'Run App' button in the top right corner of the script window.  See [here](http://shiny.rstudio.com/tutorial/) for more details on how to launch Shiny apps in RStudio.
 
