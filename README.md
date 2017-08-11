@@ -14,8 +14,15 @@ Download the file and select 'From File' when creating a new notebook in your pr
 #### From URL:
 Select 'From URL' when creating a new notebook in your project and paste the following URL into the URL Address field:
 
-https://raw.githubusercontent.com/kurlare/DSforAutomotive/master/DS%2Bfor%2BAutomotive%2BLab%253A%2BClassifying%2BBrake%2BEvents.ipynb
+https://raw.githubusercontent.com/kurlare/DSforAutomotive/master/DS%20for%20Automotive%20Lab_%20Classifying%20Brake%20Events.ipynb
 
 #### Shiny App
-To run the Shiny app from RStudio, clone the repo to your machine and set your working directory to the 'Shiny' folder.  Then open up server.R or ui.R in RStudio and click the 'Run App' button in the top right corner of the script window.  See [here](http://shiny.rstudio.com/tutorial/) for more details on how to launch Shiny apps in RStudio.
+Direct Link: https://kurlare.shinyapps.io/brakeeventanalyzer/
+
+To run the Shiny app from RStudio in the cloud on DSX:  Copy the files in the repo to your RStudio instance on DSX.  Put all the Shiny App files in one folder, open up the server.R and ui.R scripts and make sure the paths to the data files and model are correct, then click the 'Run App' button in the top right corner of the script window.
+
+To run the Shiny app from RStudio locally: Clone the repo to your machine and set your working directory to the 'Shiny' folder.  Then open up server.R or ui.R in RStudio and click the 'Run App' button in the top right corner of the script window. 
+
+See [here](http://shiny.rstudio.com/tutorial/) for more details on how to launch Shiny apps in RStudio.
+
 
