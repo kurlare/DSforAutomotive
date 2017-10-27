@@ -11,10 +11,14 @@
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
+  library(DT)
   library(shiny)
   library(data.table)
   library(ggplot2)
   library(randomForest)
+  library(jsonlite)
+  
+  source("credentials.R")
   
   ## load data and model
   newEventsDF <- read.csv("new_brake_events.csv")
@@ -22,6 +26,9 @@ shinyServer(function(input, output) {
   
   brakeEventModel <- readRDS(file = "brakeEventModel.rds")
   
+  ## Define scoring endpoint for WML
+  scoring_url <- "add scoring endpoint URL here"
+    
   ## Render plot and conditional statement for new points
   output$plot <- renderPlot({
     if(input$newPoints == F){
@@ -47,7 +54,7 @@ shinyServer(function(input, output) {
   }))
   
   ## Get predictions based on user input
-  toPredict <- eventReactive(input$getPrediction,{
+  toPredictR <- eventReactive(input$getPrediction,{
     
     toPredictDF <- data.frame(
       brake_time_sec = input$brakeTime,
@@ -68,13 +75,48 @@ shinyServer(function(input, output) {
     
     prediction
     
+  })
+  
+  ## Reactive output for WML
+  toPredictWML <- eventReactive(input$getPrediction,{
     
-  })  
+    toPredictDF <- data.frame(
+      brake_time_sec = input$brakeTime,
+      brake_distance_ft = input$brakingDist,
+      road_type = as.factor(input$roadType),
+      braking_score = input$brakeScore,
+      brake_pressure20pct = input$brakeP20,
+      brake_pressure40pct = input$brakeP40,
+      brake_pressure60pct = input$brakeP60,
+      brake_pressure80pct = input$brakeP80,
+      brake_pressure100pct = input$brakeP100,
+      abs_event = input$absEvent,
+      travel_speed = input$speed)
+    
+    levels(toPredictDF$road_type) <- c("residential", "highway", "main road")
+    
+    ## Convert dataframe to WML payload
+    scoringSample <- to_wml_payload(toPredictDF)
+    
+    ## Send payload to WML
+    results <- wml_score(scoring_url, auth_headers, payload = scoringSample)
+    
+    ## Convert API response to DataFrame
+    resultsDF <- from_wml_payload(results)
+    
+    toJSON(results)
+    
+  })
   
   ## Render the prediction in the UI
   output$predict <- renderPrint({
-    toPredict()
+    toPredictR()
     
+  })
+  
+  ## Render WML results
+  output$predictWML <- renderPrint({
+    toPredictWML()
   })
   
 })

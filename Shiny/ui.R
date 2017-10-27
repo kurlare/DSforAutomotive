@@ -64,7 +64,12 @@ shinyUI(fluidPage(
                            ),
                            br(),br(),
                            actionButton("getPrediction", "Determine Event Class"),
-                           verbatimTextOutput("predict")
+                           br(),br(),
+                           "Predicted class from R model:",
+                           verbatimTextOutput("predict"),
+                           br(),br(),
+                           "Predicted class from Watson Machine Learning:",
+                           verbatimTextOutput("predictWML")
                   )
                   
       )
